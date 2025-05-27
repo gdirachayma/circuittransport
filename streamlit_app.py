@@ -5,7 +5,7 @@ import graphviz
 st.title("Circuit de transport scolaire")
 
 # --- Entrée utilisateur ---
-lieux = ["Collège assad Ibn Fourt", "Lycée Okba Ibn Nafaa", "ElKwessam","Nabech", "ElKhazaziya", "ElMakhssouma", "ElHenbez","Awled Nhar"]
+lieux = [ "ElKwassam","Nabech", "ElKhazaziya", "ElMakhssouma", "ElHenbez","Awled Nhar","Collège assad Ibn Fourt", "Lycée Okba Ibn Nafaa"]
 
 lieu_depart = st.selectbox("📍 Lieu de départ :", lieux)
 lieu_arrivee_1 = st.selectbox("🏁 Lieu d'arrivée 1 :", lieux)
@@ -31,10 +31,9 @@ if lieu_depart and (lieu_arrivee_1 or lieu_arrivee_2):
     if lieu_arrivee_2 and lieu_arrivee_2 != lieu_arrivee_1:
         dot.node("A2", lieu_arrivee_2)
         dot.edge("A1", "A2", label="Trajet 2")
-     if lieu_arrivee_2 and lieu_arrivee_2 != lieu_arrivee_2:
+    if lieu_arrivee_3 and lieu_arrivee_3 != lieu_arrivee_2:
         dot.node("A3", lieu_arrivee_3)
         dot.edge("A2", "A3", label="Trajet 3")
-        
     st.graphviz_chart(dot)
 
     # --- Résultats ---
