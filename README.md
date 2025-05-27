@@ -19,6 +19,5 @@ A simple Streamlit app template for you to modify!
    ```
 3. Link of the app
 
-   ```
-   $ "https://circuittransport-hvwxmu4xrsoistyuftgcjz.streamlit.app/"
+   https://circuittransport-hvwxmu4xrsoistyuftgcjz.streamlit.app/
    ```
