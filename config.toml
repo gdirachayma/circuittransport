@@ -1,1 +1,7 @@
 
+[server]
+headless = true
+
+[general]
+mainModule = "app.py"
+
