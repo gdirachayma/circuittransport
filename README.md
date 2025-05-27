@@ -17,3 +17,8 @@ A simple Streamlit app template for you to modify!
    ```
    $ streamlit run streamlit_app.py
    ```
+3. Link of the app
+
+   ```
+   $ "https://circuittransport-hvwxmu4xrsoistyuftgcjz.streamlit.app/"
+   ```
