@@ -73,15 +73,11 @@ if st.button("✅ Valider ce trajet"):
 if st.session_state.page > 1:
     df = pd.DataFrame(st.session_state.data)
     csv_data = df.to_csv(index=False)
-
-    # URL du webhook Zapier
-    zapier_webhook_url = "https://hooks.zapier.com/hooks/catch/23104980/2jwtn4u/"
-
     if st.button("📤 Envoyer les trajets saisis par email"):
-        response = requests.post(zapier_webhook_url, json={
-            "filename": "trajets.csv",
-            "content": csv_data
-        })
+        response = requests.post(
+            "https://hooks.zapier.com/hooks/catch/23104980/2jwtn4u/",
+            json={"filename": "trajets.csv", "content": csv_data}
+        )
         if response.status_code == 200:
             st.success("✅ Trajets envoyés par email avec succès !")
         else:
