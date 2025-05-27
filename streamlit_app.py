@@ -10,6 +10,7 @@ lieux = ["Collège assad Ibn Fourt", "Lycée Okba Ibn Nafaa", "ElKwessam","Nabec
 lieu_depart = st.selectbox("📍 Lieu de départ :", lieux)
 lieu_arrivee_1 = st.selectbox("🏁 Lieu d'arrivée 1 :", lieux)
 lieu_arrivee_2 = st.selectbox("🏁 Lieu d'arrivée 2 :", lieux)
+lieu_arrivee_3 = st.selectbox("🏁 Lieu d'arrivée 3 :", lieux)
 
 nb_collegiens = st.number_input("👦 Nombre de collégiens :", min_value=0, value=0)
 nb_lyceens = st.number_input("👩 Nombre de lycéens :", min_value=0, value=0)
@@ -29,7 +30,11 @@ if lieu_depart and (lieu_arrivee_1 or lieu_arrivee_2):
         dot.edge("D", "A1", label="Trajet 1")
     if lieu_arrivee_2 and lieu_arrivee_2 != lieu_arrivee_1:
         dot.node("A2", lieu_arrivee_2)
-        dot.edge("D", "A2", label="Trajet 2")
+        dot.edge("A1", "A2", label="Trajet 2")
+     if lieu_arrivee_2 and lieu_arrivee_2 != lieu_arrivee_2:
+        dot.node("A3", lieu_arrivee_3)
+        dot.edge("A2", "A3", label="Trajet 3")
+        
     st.graphviz_chart(dot)
 
     # --- Résultats ---
