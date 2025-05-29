@@ -54,13 +54,13 @@ with col2:
         dot = graphviz.Digraph()
         dot.node("D", lieu_depart)
         if lieu_arrivee_1:
-            dot.node("A1", lieu_arrivee_1)
+            dot.node("A1", lieu_arrivee_1,color="red")
             dot.edge("D", "A1", label="Trajet 1")
         if lieu_arrivee_2 and lieu_arrivee_2 != lieu_arrivee_1:
-            dot.node("A2", lieu_arrivee_2)
+            dot.node("A2", lieu_arrivee_2,color="green")
             dot.edge("A1", "A2", label="Trajet 2")
         if lieu_arrivee_3 and lieu_arrivee_3 != lieu_arrivee_2:
-            dot.node("A3", lieu_arrivee_3)
+            dot.node("A3", lieu_arrivee_3,color="blue")
             dot.edge("A2", "A3", label="Trajet 3")
         st.graphviz_chart(dot)
 
@@ -76,7 +76,10 @@ if st.button("✅ Valider Ce trajet et passer au suivant"):
         if st.button("📤 Envoyer ce trajet saisi par email et terminer la saisie"):
             response = requests.post(
                 "https://hooks.zapier.com/hooks/catch/23104980/2jwtn4u/",
-                json={"filename": "trajets.csv", "content": csv_data}
+                json={
+                    "filename": "trajects.csv",
+                    "csv_content": csv_data
+                }
                 )
             if response.status_code == 200:
                 st.success("✅ Trajets envoyés par email avec succès !")
