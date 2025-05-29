@@ -28,7 +28,7 @@ st.title("Circuit de transport scolaire")
 col1 , col2=st.columns((3.5, 3), gap="medium")
 
 with col1: 
-    st.title(f"Trajet numéro  {st.session_state.page} : Saisie le trajet")
+    st.title(f"Circuit numéro  {st.session_state.page} : Saisie le circuit")
 
 
         # --- Entrée utilisateur ---
@@ -50,7 +50,7 @@ with col1:
 with col2:   
         # --- Graphique ---
     if lieu_depart and (lieu_arrivee_1 or lieu_arrivee_2):
-        st.subheader("🛣️ Trajet Réalisé :")
+        st.subheader(f" {st.session_state.page} :🛣️ Circuit  rélaisé ")
         dot = graphviz.Digraph()
         dot.node("D", lieu_depart)
         if lieu_arrivee_1:
