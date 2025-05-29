@@ -28,7 +28,7 @@ st.title("Circuit de transport scolaire")
 col1 , col2=st.columns((3.5, 3), gap="medium")
 
 with col1: 
-    st.title(f"Étape {st.session_state.page} : Saisie d'un trajet")
+    st.title(f"Trajet numéro  {st.session_state.page} : Saisie le trajet")
 
 
         # --- Entrée utilisateur ---
@@ -39,7 +39,7 @@ with col1:
     lieu_arrivee_3 = st.selectbox("🏁 Lieu d'arrivée 3 :", lieux, key=f"arr3_{st.session_state.page}")
 
     nb_collegiens = st.number_input("👦 Nombre de collégiens :", min_value=0, value=0, key=f"col{st.session_state.page}")
-    nb_lyceens = st.number_input("👩 Nombre de lycéens :", min_value=0, value=0, key=f"lyc{st.session_state.page}")
+    nb_lyceens = st.number_input("👩🏻‍🎓 Nombre de lycéens :", min_value=0, value=0, key=f"lyc{st.session_state.page}")
     nb_bus=st.number_input("🚌 Nombre de bus utilisé pour assurer le transport de cette tranche d'élève:",min_value=0, value=0,key=f"bus{st.session_state.page}")
         # --- Calcul ---
     total_eleves = nb_collegiens + nb_lyceens
@@ -66,21 +66,23 @@ with col2:
 
 
 # Validation
-if st.button("✅ Valider ce trajet"):
+if st.button("✅ Valider Ce trajet et passer au suivant"):
     valider_formulaire()
 
-# Option : Fin de saisie
-if st.session_state.page > 1:
-    df = pd.DataFrame(st.session_state.data)
-    csv_data = df.to_csv(index=False)
-    if st.button("📤 Envoyer les trajets saisis par email"):
-        response = requests.post(
-            "https://hooks.zapier.com/hooks/catch/23104980/2jwtn4u/",
-            json={"filename": "trajets.csv", "content": csv_data}
-        )
-        if response.status_code == 200:
-            st.success("✅ Trajets envoyés par email avec succès !")
-        else:
-            st.error("❌ Une erreur est survenue lors de l'envoi.")
-                
+    # Option : Fin de saisie
+    if st.session_state.page > 1:
+        df = pd.DataFrame(st.session_state.data)
+        csv_data = df.to_csv(index=False)
+        if st.button("📤 Envoyer ce trajet saisi par email et terminer la saisie"):
+            response = requests.post(
+                "https://hooks.zapier.com/hooks/catch/23104980/2jwtn4u/",
+                json={"filename": "trajets.csv", "content": csv_data}
+                )
+            if response.status_code == 200:
+                st.success("✅ Trajets envoyés par email avec succès !")
+            else:
+                 st.error("❌ Une erreur est survenue lors de l'envoi.")
+                    
 
+
+    
