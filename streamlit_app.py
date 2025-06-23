@@ -46,4 +46,4 @@ if st.button("▶️ Lancer la simulation"):
         with carte_placeholder.container():
             st_folium(m, width=700, height=500, key=f"map_{i}")
 
-        time.sleep(0.02)
+        time.sleep(5)
